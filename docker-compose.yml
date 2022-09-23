@@ -1,0 +1,40 @@
+version: '3'
+services:
+  redis:
+    container_name: redis
+    image: redis:latest
+    restart: 'always'
+    ports:
+      - 6379:6379
+
+  surrealdb:
+    container_name: surrealdb
+    image: surrealdb/surrealdb:latest
+    restart: 'always'
+    command: start
+    ports:
+      - 8000:8000
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    restart: 'always'
+    env_file:
+      - .env
+    ports:
+      - 8080:80
+    volumes:
+      - pgadmin:/var/lib/pgadmin
+
+  postgres:
+    container_name: postgres
+    image: postgres:14
+    restart: 'always'
+    ports:
+      - 5432:5432
+    volumes:
+      - ~/postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres:
+  pgadmin:
