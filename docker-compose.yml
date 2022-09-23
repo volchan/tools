@@ -30,6 +30,7 @@ services:
     container_name: postgres
     image: postgres:${PG_VERSION}
     restart: unless-stopped
+    command: postgres -c stats_temp_directory=/tmp
     ports:
       - 5432:5432
     volumes:
