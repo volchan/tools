@@ -3,14 +3,14 @@ services:
   redis:
     container_name: redis
     image: redis:latest
-    restart: 'always'
+    restart: unless-stopped
     ports:
       - 6379:6379
 
   surrealdb:
     container_name: surrealdb
     image: surrealdb/surrealdb:latest
-    restart: 'always'
+    restart: unless-stopped
     command: start
     ports:
       - 8000:8000
@@ -18,7 +18,7 @@ services:
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4:latest
-    restart: 'always'
+    restart: unless-stopped
     env_file:
       - .env
     ports:
@@ -29,7 +29,7 @@ services:
   postgres:
     container_name: postgres
     image: postgres:14
-    restart: 'always'
+    restart: unless-stopped
     ports:
       - 5432:5432
     volumes:
