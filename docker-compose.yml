@@ -2,14 +2,14 @@ version: '3'
 services:
   redis:
     container_name: redis
-    image: redis:latest
+    image: redis:${REDIS_VERSION}
     restart: unless-stopped
     ports:
       - 6379:6379
 
   surrealdb:
     container_name: surrealdb
-    image: surrealdb/surrealdb:latest
+    image: surrealdb/surrealdb:${SURREALDB_VERSION}
     restart: unless-stopped
     command: start
     ports:
@@ -17,10 +17,10 @@ services:
 
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:latest
+    image: dpage/pgadmin4:${PG_ADMIN_VERSION}
     restart: unless-stopped
     env_file:
-      - .env
+      - .env.pg_admin
     ports:
       - 8080:80
     volumes:
@@ -28,7 +28,7 @@ services:
 
   postgres:
     container_name: postgres
-    image: postgres:14
+    image: postgres:${PG_VERSION}
     restart: unless-stopped
     ports:
       - 5432:5432
