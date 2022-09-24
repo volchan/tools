@@ -29,12 +29,14 @@ services:
   postgres:
     container_name: postgres
     image: postgres:${PG_VERSION}
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
     restart: unless-stopped
     command: postgres -c stats_temp_directory=/tmp
     ports:
       - 5432:5432
     volumes:
-      - ~/postgres_data:/var/lib/postgresql/data
+      - ~/postgresql/postgresql@${PG_VERSION}:/var/lib/postgresql/data
 
 volumes:
   postgres:
