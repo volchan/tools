@@ -5,3 +5,5 @@
 !.env.*.example
 
 **/*dump.sql
+
+.DS_Store
