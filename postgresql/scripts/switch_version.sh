@@ -49,8 +49,6 @@ while getopts "v:drh" flag;do
   esac
 done
 
-echo "Switching to PostgresQL $NEW_VERSION"
-
 cd $(dirname "$0")/../../
 
 env_file=.env
@@ -98,3 +96,5 @@ then
 
   sh $(dirname "$0")/restore.sh
 fi
+
+echo "Switched to PostgresQL $NEW_VERSION"
