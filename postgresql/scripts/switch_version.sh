@@ -33,7 +33,6 @@ while getopts "v:drh" flag;do
       NEW_VERSION="$OPTARG"
       ;;
     d)
-      echo "HEllo"
       dump=true
       ;;
     r)
