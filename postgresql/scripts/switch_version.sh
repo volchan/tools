@@ -28,7 +28,6 @@ dump=false
 restore=false
 
 while getopts "v:drh" flag;do
-  echo "flag -$flag, Argument $OPTARG";
   case $flag in
     v)
       NEW_VERSION="$OPTARG"
@@ -49,8 +48,6 @@ while getopts "v:drh" flag;do
   
   esac
 done
-
-echo "$dump $restore"
 
 echo "Switching to PostgresQL $NEW_VERSION"
 
