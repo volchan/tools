@@ -32,10 +32,10 @@ fi
 
 export $(cat $env_file | xargs)
 
-docker compose up -d --build
+docker compose up -d --build postgres
 
 RETRIES=10
-until psql -U postgres > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
+until docker exec -it postgres psql -h localhost -U postgres -d postgres -c "select 1" > /dev/null 2>&1 || [ $RETRIES -eq 0 ]; do
   echo "Waiting for postgres server, $((RETRIES--)) remaining attempts..."
   sleep 1
 done
